@@ -34,7 +34,7 @@ router.register('Job', views.JobViewSet)
 router.register('MpesaPayment', views.MpesaPaymentViewSet)
 router.register('User', views.SignUpViewSet)
 # router.register('Jobseeker', views.JobseekerViewSet)
-router.register('UpdateUserProfile', views. ViewSet)
+router.register('UpdateUserProfile', views.UpdateUserProfileViewSet)
 
 
 urlpatterns = [

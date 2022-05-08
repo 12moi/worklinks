@@ -30,7 +30,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import login_required
 from .forms import PaymentForm
 import time
-from .serializers import MpesaPaymentSerializer,JobseekerSerializer, JobSerializer, SignUpSerializer,UpdateUserProfileSerializer
+from .serializers import EmployerSerializer, MpesaPaymentSerializer,JobseekerSerializer, JobSerializer, SignUpSerializer,UpdateUserProfileSerializer
 from .models import *
 from decouple import config
 import json
@@ -59,6 +59,10 @@ class JobViewSet(viewsets.ModelViewSet):
 
 class SignUpViewSet(viewsets.ModelViewSet):  
       serializer_class = SignUpSerializer
+      queryset = User.objects.all()
+
+class EmployerViewSet(viewsets.ModelViewSet):  
+      serializer_class = EmployerSerializer
       queryset = User.objects.all()
 
 class UpdateUserProfileViewSet(viewsets.ModelViewSet):  

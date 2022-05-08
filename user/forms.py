@@ -42,10 +42,10 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title']
 
-class EmployeeForm(forms.ModelForm):
+class EmployerForm(forms.ModelForm):
     class Meta:
         model = Employer
-        fields = ['name']
+        fields = ['user', 'name','contact', 'email','location','address', 'company_bio', 'company_pic']
 
 class JobseekerForm(forms.ModelForm):
     first_name = forms.CharField(required=True)

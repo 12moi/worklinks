@@ -20,6 +20,14 @@ class User(AbstractUser):
     is_verified = models.BooleanField(default=False)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255, unique=True)
+    password = models.CharField(max_length=255)
+    username = None
+
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     def save_user(self):
         self.save()

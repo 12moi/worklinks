@@ -13,6 +13,13 @@ class PaymentForm(forms.ModelForm):
     amount=forms.IntegerField(required=True)
     contact= forms.IntegerField(required=True)
 
+# class EmployerProfileForm(forms.ModelForm):
+#      class Meta:
+#         model = User
+#         fields = ['id','email','name','password']
+#         extra_kwargs = {
+#           'password': {'write_only':True}
+#         }
 
 class EmployerProfileForm(forms.ModelForm):
     class Meta:

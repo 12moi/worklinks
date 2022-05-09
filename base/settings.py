@@ -34,24 +34,24 @@ from decouple import config,Csv
 # DEBUG = config('DEBUG', default=False, cast=bool)
 #  # development
 # if config('MODE')=="dev":
-#     DATABASES = {
+#      DATABASES = {
 #         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': config('DB_NAME'),
-#             'USER': config('DB_USER'),
-#             'PASSWORD': config('DB_PASSWORD'),
-#             'HOST': config('DB_HOST'),
+#              'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#              'NAME': config('DB_NAME'),
+#              'USER': config('DB_USER'),
+#              'PASSWORD': config('DB_PASSWORD'),
+#              'HOST': config('DB_HOST'),
 #             'PORT': '',
-#         }
+#          }
        
-#    }
+#     }
 #  # production
 # else:
-#          DATABASES = {
-#         'default': dj_database_url.config(
-#             default=config('DATABASE_URL')
+#           DATABASES = {
+#          'default': dj_database_url.config(
+#              default=config('DATABASE_URL')
 #         )
-#             }
+#              }
 
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(db_from_env)
@@ -60,7 +60,7 @@ from decouple import config,Csv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # env = environ.Env(DEBUG=(bool, False))
 # reading .env file
-#  environ.Env.read_env()
+# environ.Env.read_env()
 
 # # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -124,7 +124,17 @@ INSTALLED_APPS = [
     'cloudinary',
     #  'drf_yasg',
     "corsheaders",
+    'rest_framework.authtoken',
 ]
+
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_CREDENTIALS = True
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',

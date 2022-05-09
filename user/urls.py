@@ -1,12 +1,11 @@
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
-
 from . import views
 from rest_framework.routers import DefaultRouter
 from .views import    SignUpViewSet, UpdateUserProfileViewSet
 from rest_framework import routers
+from .views import LogoutView, RegisterView, LoginView, UserView
 # from rest_framework_swagger.views import get_swagger_view
 from rest_framework import permissions
 # from drf_yasg.views import get_schema_view
@@ -39,6 +38,10 @@ router.register('EmployerProfile', views.EmployerProfileViewSet)
 
 
 urlpatterns = [
+   path('register', RegisterView.as_view()),
+    path('login', LoginView.as_view()),
+    path('user', UserView.as_view()),
+    path('logout', LogoutView.as_view()),
     path('', include(router.urls)),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),

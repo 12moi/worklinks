@@ -43,11 +43,96 @@ from django.template.loader import render_to_string
 from django.contrib.auth.models import User  
 from django.core.mail import EmailMessage  
 from django.contrib.auth import get_user_model
-# from drf_yasg.views import get_schema_view
 User = get_user_model()
-# from user.forms import EmployerInformationForm
+from urllib import response
+from django.shortcuts import render
+from rest_framework.views import APIView
+from user.serializers import UserSerializer
+from .serializers import UserSerializer
+from rest_framework.response import Response
+from .models import User
+from rest_framework.exceptions import AuthenticationFailed
+import jwt, datetime
 
 # Create your views here.
+
+class RegisterView(APIView):
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+
+class LoginView(APIView):
+    def post(self, request):
+        email = request.data['email']
+        password = request.data['password']
+
+        user = User.objects.filter(email=email).first()
+
+        if user is None:
+            raise AuthenticationFailed('User not found')
+        
+        if not user.check_password(password):
+            raise AuthenticationFailed('Incorrect password!')
+
+        payload = {
+          'id':user.id,
+          'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
+          'iat': datetime.datetime.utcnow()
+        }
+
+        token = (jwt.encode(payload, 'secret', algorithm='HS256'))
+        
+        #return token via cookies
+        response = Response()
+
+        response.set_cookie(key='jwt', value=token,
+                        httponly=True,samesite='none',secure=True)
+
+        response.data = {
+            'jwt': token
+        }
+
+        return response
+
+        # return Response({
+        #   # 'message':'login success',
+        #   'jwt': token
+        # })
+
+
+class UserView(APIView):
+    def get(self, request):
+
+        token = request.COOKIES.get('jwt')
+
+        if not token:
+            raise AuthenticationFailed('unauthenticated')
+
+        try:
+            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthorized')
+
+        #decode user credentials
+
+        user = User.objects.filter(id=payload['id']).first()
+        serializer = UserSerializer(user)
+
+        return Response(serializer.data)
+
+class LogoutView(APIView):
+    def post(self, request):
+        response = Response()
+        response.delete_cookie('jwt')
+        response.data = {
+          'message' : 'logged out successfully'
+        }
+
+        return response  
+
 
 class MpesaPaymentViewSet(viewsets.ModelViewSet):  
       serializer_class = MpesaPaymentSerializer
@@ -73,25 +158,7 @@ class EmployerProfileViewSet(viewsets.ModelViewSet):
       serializer_class = EmployerProfileSerializer
       queryset = EmployerProfile.objects.all()
 
-class LogoutView(APIView):
-    def post(self, request, format=None):
-        request.auth.delete()
-        return Response(status=status.HTTP_200_OK)
 
-
-
-
-
-
- 
-
-        
-
-
-
-# @login_required(login_url='login')
-# def profile(request, username):
-#     return render(request, 'profile')
 @login_required
 def profile(request):
 
@@ -149,80 +216,3 @@ def create_post(request, post_id):
         form = PostForm()
     return render(request, 'post', {'form': form})
 
-# @login_required
-# def employerPayment(request):
-#     current_user = request.user
-#     if request.method == 'POST':
-#         mpesa_form = PaymentForm(
-#             request.POST, request.FILES, instance=request.user)
-#         if mpesa_form.is_valid():
-#             access_token = MpesaAccessToken().validated_mpesa_access_token
-#             stk_push_api_url = config("STK_PUSH_API_URL")
-#             headers = {
-#                 "Authorization": "Bearer %s" % access_token,
-#                 "Content-Type": "application/json",
-#             }
-#             request = {
-#                 "BusinessShortCode": LipaNaMpesaPassword().BusinessShortCode,
-#                 "Password": LipaNaMpesaPassword().decode_password,
-#                 "Timestamp": LipaNaMpesaPassword().payment_time,
-#                 "TransactionType": "CustomerPayBillOnline",
-#                 "Amount": "1",
-#                 "PartyA": request.POST.get('contact'),
-#                 "PartyB": LipaNaMpesaPassword().BusinessShortCode,
-#                 "PhoneNumber": request.POST.get('contact'),
-#                 "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
-#                 "AccountReference": "Jobslux",
-#                 "TransactionDesc": "Testing stk push",
-#             }
-#             response = requests.post(
-#                 stk_push_api_url, json=request, headers=headers)
-
-#             mpesa_form.save()
-#             user = User.objects.get(id=current_user.id)
-#             user.is_verified = True
-#             user.save()
-#             time.sleep(10)
-#             return redirect('employerDash')
-#     else:
-#         mpesa_form = PaymentForm(instance=request.user)
-#     context = {
-#         'mpesa_form': mpesa_form,
-#     }
-#     return render(request, '', context)
-
-
-# def search_results(request):
-
-#     if 'employer' in request.GET and request.GET["employer"]:
-#         search_term = request.GET.get("employer")
-#         searched_articles = Employer.search_by_title(search_term)
-#         message = f"{search_term}"
-
-#         return Response (request,{"message":message,"employers": searched_articles})
-
-#     else:
-#         message = "You haven't searched for any employer"
-#         return Response (request,{"message":message})
-
-# class AdvertisementsView(APIView):
-#     permission_classes = (IsAdminOrReadOnly,)
-#     def get_add(self, ad_name):
-#         try:
-#             return Advertisements.objects.get(ad_name=ad_name)
-#         except Advertisements.DoesNotExist:
-#             return Http404
-
-#     def get(self, request, ad_name, format=None):
-#         add = self.get_add(ad_name)
-#         serializers = AdvertisementSerializer(add)
-#         return Response(serializers.data)
-
-#     def put(self, request, ad_name, format=None):
-#         add = self.get_add(ad_name)
-#         serializers = AdvertisementSerializer(add, request.data)
-#         if serializers.is_valid():
-#             serializers.save()
-#             return Response(serializers.data)
-#         else:
-#             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)

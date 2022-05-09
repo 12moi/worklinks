@@ -1,5 +1,5 @@
 from django import forms
-from .models import Employer
+from .models import Employer, UserProfile
 from xml.etree.ElementInclude import include
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -34,7 +34,7 @@ class UpdateUserForm(forms.ModelForm):
 
 class UpdateUserProfileForm(forms.ModelForm):
     class Meta:
-        model = Profile
+        model = UserProfile
         fields = ['full_name','profile_image','email','bio','resume','skills','work_experience','address','referees']
         
 class PostForm(forms.ModelForm):

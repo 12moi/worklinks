@@ -67,7 +67,7 @@ class EmployerViewSet(viewsets.ModelViewSet):
 
 class UpdateUserProfileViewSet(viewsets.ModelViewSet):  
       serializer_class = UpdateUserProfileSerializer
-      queryset = Profile.objects.all()
+      queryset = UserProfile.objects.all()
 
 
 class LogoutView(APIView):

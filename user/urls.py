@@ -46,9 +46,6 @@ urlpatterns = [
     path('jobseeker/', views.Jobseeker, name='Jobseeker'),
     path('user/', views.User, name='User'),
     path('profile/', views.Profile, name='UpdateUserProfile'),
-   #  path('', views.index, name='index'),
-   #   path('daraja/stk-push', views.stk_push_callback, name='mpesa_stk_push_callback'),
-   #  path('activate/(<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
-   #      activate, name='activate'),  
+    
    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

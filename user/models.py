@@ -37,7 +37,7 @@ class User(AbstractUser):
 
 
 
-class Profile(models.Model):
+class UserProfile(models.Model):
     EXPRIENCE_LEVEL= [
         ('Less than a year', 'Less than a year'),
         ('one to three year','1 to 3'),

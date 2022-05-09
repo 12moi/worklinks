@@ -208,8 +208,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-
+    "https://moiwork.herokuapp.com/",
     "http://localhost:4200",
+    
 ]
 
 CORS_ALLOW_METHODS = [

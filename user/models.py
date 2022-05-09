@@ -1,3 +1,4 @@
+import django
 from django.db import models
 from django.db.models.signals import post_save
 from django.conf import settings
@@ -99,7 +100,7 @@ class Jobseeker(models.Model):
 
 
 
-class Employer(models.Model):
+class EmployerProfile(models.Model):
     user = models.OneToOneField(
         User, related_name='employer', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
@@ -190,6 +191,7 @@ class Job(models.Model):
         ('Remote', 'Remote'),
         ('Full Time', 'Full-Time'),
     ]
+    Id= models.ForeignKey(EmployerProfile,  on_delete=models.CASCADE, related_name='job')
     title = models.CharField(max_length=30)
     location = models.CharField(max_length=255)
     requirements = models.TextField()

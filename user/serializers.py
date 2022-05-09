@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Employer, MpesaPayment,Job,Profile
+from .models import EmployerProfile, MpesaPayment,Job,UserProfile
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 
@@ -15,10 +15,14 @@ class JobSerializer(serializers.ModelSerializer):
         model = Job
         fields = ['id', 'title','requirements','location', 'jobtype']
 
+class EmployerProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmployerProfile
+        fields = ['user', 'name','contact', 'email','location','address', 'company_bio', 'company_pic']
 
 class UpdateUserProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Profile
+        model = UserProfile
         fields = ['full_name','profile_image','email','bio','resume','skills','work_experience','address','referees']
 
 class SignUpSerializer(serializers.ModelSerializer):
@@ -29,7 +33,7 @@ class SignUpSerializer(serializers.ModelSerializer):
 
 class EmployerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Employer
+        model = EmployerProfile
         fields = ['user', 'name','contact', 'email','location','address', 'company_bio', 'company_pic']
 
 class JobseekerSerializer(serializers.ModelSerializer):

@@ -35,6 +35,7 @@ router.register('MpesaPayment', views.MpesaPaymentViewSet)
 router.register('User', views.SignUpViewSet)
 # router.register('Jobseeker', views.JobseekerViewSet)
 router.register('UpdateUserProfile', views.UpdateUserProfileViewSet)
+router.register('EmployerProfile', views.EmployerProfileViewSet)
 
 
 urlpatterns = [
@@ -44,8 +45,9 @@ urlpatterns = [
     path('MpesaPayment/', views.MpesaPayment, name='MpesaPayment'),
     path('job/', views.Job, name='Job'),
     path('jobseeker/', views.Jobseeker, name='Jobseeker'),
+    path('EmployerProfile/', views.EmployerProfile, name='EmployerProfile'),
     path('user/', views.User, name='User'),
-    path('profile/', views.Profile, name='UpdateUserProfile'),
+    path('profile/', views.UserProfile, name='UpdateUserProfile'),
     
    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

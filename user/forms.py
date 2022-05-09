@@ -1,10 +1,10 @@
 from django import forms
-from .models import Employer, UserProfile
+from .models import EmployerProfile, UserProfile
 from xml.etree.ElementInclude import include
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import  Comment, Employer,Post, Profile,Job, Jobseeker
+from .models import  Comment, Post,Job, Jobseeker
 
 
 class PaymentForm(forms.ModelForm):
@@ -13,6 +13,11 @@ class PaymentForm(forms.ModelForm):
     amount=forms.IntegerField(required=True)
     contact= forms.IntegerField(required=True)
 
+
+class EmployerProfileForm(forms.ModelForm):
+    class Meta:
+        model = EmployerProfile
+        fields = ['user', 'name','contact', 'email','location','address', 'company_bio', 'company_pic']
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField()
@@ -42,10 +47,10 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title']
 
-class EmployerForm(forms.ModelForm):
-    class Meta:
-        model = Employer
-        fields = ['user', 'name','contact', 'email','location','address', 'company_bio', 'company_pic']
+# class EmployerForm(forms.ModelForm):
+#     class Meta:
+#         model = Employer
+#         fields = ['user', 'name','contact', 'email','location','address', 'company_bio', 'company_pic']
 
 class JobseekerForm(forms.ModelForm):
     first_name = forms.CharField(required=True)

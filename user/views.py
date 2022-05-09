@@ -15,7 +15,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from .forms import SignupForm, PostForm, UpdateUserForm, UpdateUserProfileForm
 from django.http import HttpResponseRedirect
-from .models import Profile, Post, Comment
+from .models import Post, Comment
 import random
 import json
 from django.contrib.auth import get_user_model
@@ -30,7 +30,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import login_required
 from .forms import PaymentForm
 import time
-from .serializers import EmployerSerializer, MpesaPaymentSerializer,JobseekerSerializer, JobSerializer, SignUpSerializer,UpdateUserProfileSerializer
+from .serializers import EmployerProfileSerializer, EmployerSerializer, MpesaPaymentSerializer,JobseekerSerializer, JobSerializer, SignUpSerializer,UpdateUserProfileSerializer
 from .models import *
 from decouple import config
 import json
@@ -69,6 +69,9 @@ class UpdateUserProfileViewSet(viewsets.ModelViewSet):
       serializer_class = UpdateUserProfileSerializer
       queryset = UserProfile.objects.all()
 
+class EmployerProfileViewSet(viewsets.ModelViewSet):  
+      serializer_class = EmployerProfileSerializer
+      queryset = EmployerProfile.objects.all()
 
 class LogoutView(APIView):
     def post(self, request, format=None):

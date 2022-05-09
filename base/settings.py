@@ -123,11 +123,12 @@ INSTALLED_APPS = [
     'bootstrap4',
     'cloudinary',
     #  'drf_yasg',
-    "corsheaders",
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

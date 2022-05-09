@@ -51,7 +51,8 @@ class UserProfile(models.Model):
         ('Interpersonal','Interpersonal Skills'), 
         ('Other skills','Other skills'),
       ]
-    id = models.IntegerField(User, primary_key=True)
+    # id = models.IntegerField(User, unique=True, primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     full_name = models.CharField(max_length=255)
     contact = models.CharField(max_length=30,  blank=True)
     email = models.CharField(max_length=255)

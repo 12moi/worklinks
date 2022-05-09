@@ -123,6 +123,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'cloudinary',
     #  'drf_yasg',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [

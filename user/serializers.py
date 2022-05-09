@@ -34,7 +34,7 @@ class SignUpSerializer(serializers.ModelSerializer):
 class EmployerSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmployerProfile
-        fields = ['user', 'name','contact', 'email','location','address', 'company_bio', 'company_pic']
+        fields = '__all__'
 
 class JobseekerSerializer(serializers.ModelSerializer):
 

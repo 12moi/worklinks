@@ -17,7 +17,7 @@ class PaymentForm(forms.ModelForm):
 class EmployerProfileForm(forms.ModelForm):
     class Meta:
         model = EmployerProfile
-        fields = ['user', 'name','contact', 'email','location','address', 'company_bio', 'company_pic']
+        fields = '__all__'
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField()
@@ -27,7 +27,7 @@ class SignupForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+        fields  = '__all__'
 
 class UpdateUserForm(forms.ModelForm):
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')

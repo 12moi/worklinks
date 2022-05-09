@@ -109,7 +109,8 @@ class EmployerProfile(models.Model):
     location = models.IntegerField(blank=True)
     address = models.CharField(max_length=255)
     company_bio = models.CharField(max_length=255)
-    company_pic = CloudinaryField('image')
+    company_pic = models.FileField(blank=True)
+
 
     def save_employer(self):
         self.save()

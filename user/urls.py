@@ -55,7 +55,7 @@ urlpatterns = [
     path('user/', views.User, name='User'),
     path('profile/', views.UserProfile, name='UpdateUserProfile'),
     # path('Applicants/', views.Applicants, name='Applicants'),
-    path('Apply/', views.Applicants, name='Apply'),
+    path('Apply/', views.Apply, name='Apply'),
     
    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

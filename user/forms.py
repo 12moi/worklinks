@@ -1,5 +1,5 @@
 from django import forms
-from .models import  Applicants, EmployerProfile, UserProfile
+from .models import   EmployerProfile, UserProfile
 from xml.etree.ElementInclude import include
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -81,10 +81,10 @@ class JobseekerForm(forms.ModelForm):
 
         return jobseeker
 
-class ApplicantsForm(forms.ModelForm):
-    class Meta:
-        model = Applicants
-        fields = '__all__'
+# class ApplicantsForm(forms.ModelForm):
+#     class Meta:
+#         model = Applicants
+#         fields = '__all__'
        
 
 class JobForm(forms.ModelForm):

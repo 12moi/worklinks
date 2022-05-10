@@ -2,14 +2,13 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import HttpResponse, Http404,HttpResponseRedirect
-from email import message
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from .forms import PostForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from .forms import SignupForm, PostForm, UpdateUserForm, UpdateUserProfileForm
+from .forms import PostForm, UpdateUserForm, UpdateUserProfileForm
 from django.http import HttpResponseRedirect
 from .models import Post, Comment
 import random

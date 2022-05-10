@@ -4,13 +4,8 @@ from django.db.models.signals import post_save
 from django.conf import settings
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
-# from rest_framework.authtoken.models import Token
-# from sqlalchemy import true
-# from worklinks.settings import AUTH_USER_MODEL
 from cloudinary.models import CloudinaryField
-# from phonenumber_field.modelfields import PhoneNumberField
 
-# Create your models here.
 
 
 class User(AbstractUser):
@@ -137,7 +132,7 @@ class Employer(models.Model):
 #         self.delete()
 
 class Apply(models.Model):
-    Relate= models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE, related_name='apply')
+    Relate= models.OneToOneField(UserProfile, null=True, blank=True, on_delete=models.CASCADE, related_name='apply')
     Full_Name = models.CharField(max_length=255)
     Email = models.CharField(max_length=255)
     Contact = models.IntegerField()

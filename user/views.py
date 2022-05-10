@@ -25,7 +25,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import login_required
 from .forms import PaymentForm
 import time
-from .serializers import  ApplicantsSerializer, EmployerProfileSerializer, EmployerSerializer, MpesaPaymentSerializer,JobseekerSerializer, JobSerializer, SignUpSerializer,UpdateUserProfileSerializer
+from .serializers import  ApplicantsSerializer, ApplySerializer, EmployerProfileSerializer, EmployerSerializer, MpesaPaymentSerializer,JobseekerSerializer, JobSerializer, SignUpSerializer,UpdateUserProfileSerializer
 from .models import *
 from decouple import config
 import json
@@ -154,7 +154,9 @@ class ApplicantsViewSet(viewsets.ModelViewSet):
       serializer_class = ApplicantsSerializer
       queryset = Applicants.objects.all()
     
-
+class ApplyViewSet(viewsets.ModelViewSet):  
+      serializer_class = ApplySerializer
+      queryset = Apply.objects.all()
 
 class JobViewSet(viewsets.ModelViewSet):  
       serializer_class = JobSerializer

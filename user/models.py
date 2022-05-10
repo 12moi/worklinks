@@ -136,6 +136,23 @@ class Applicants(models.Model):
     def delete_Applicants(self):
         self.delete()
 
+class Apply(models.Model):
+    Relate= models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE, related_name='apply')
+    Full_Name = models.CharField(max_length=255)
+    Email = models.CharField(max_length=255)
+    Contact = models.IntegerField()
+    Availability= models.CharField(max_length=255)
+    Salary_Expectations = models.CharField(max_length=255)
+    
+
+
+    def save_Apply(self):
+        self.save()
+
+
+    def delete_Apply(self):
+        self.delete()
+
 class EmployerProfile(models.Model):
     user = models.OneToOneField(
         User, related_name='employer', on_delete=models.CASCADE)

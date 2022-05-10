@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import   Applicants, Employer, EmployerProfile, MpesaPayment,Job,UserProfile
+from .models import   Applicants, Apply, Employer, EmployerProfile, MpesaPayment,Job,UserProfile
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 
@@ -31,6 +31,11 @@ class ApplicantsSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Applicants
+        fields = ['Full_Name', 'Email', 'Contact', 'Salary_Expectations']
+
+class ApplySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Apply
         fields = ['Full_Name', 'Email', 'Contact', 'Salary_Expectations']
 
 class MpesaPaymentSerializer(serializers.ModelSerializer):

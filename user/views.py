@@ -1,16 +1,12 @@
 from rest_framework import generics, status
-
-
 from rest_framework.response import Response
-
 from rest_framework.views import APIView
-
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from email import message
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from .forms import SignupForm, PostForm
+from .forms import PostForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from .forms import SignupForm, PostForm, UpdateUserForm, UpdateUserProfileForm
@@ -21,7 +17,6 @@ import json
 from django.contrib.auth import get_user_model
 
 from django.http import HttpResponse  
-# from .mpesa_credentials import MpesaAccessToken, LipaNaMpesaPassword
 from .models import MpesaPayment
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -30,7 +25,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import login_required
 from .forms import PaymentForm
 import time
-from .serializers import EmployerProfileSerializer, EmployerSerializer, MpesaPaymentSerializer,JobseekerSerializer, JobSerializer, SignUpSerializer,UpdateUserProfileSerializer
+from .serializers import  ApplicantsSerializer, EmployerProfileSerializer, EmployerSerializer, MpesaPaymentSerializer,JobseekerSerializer, JobSerializer, SignUpSerializer,UpdateUserProfileSerializer
 from .models import *
 from decouple import config
 import json
@@ -62,6 +57,23 @@ class RegisterView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+class EmployerProfileView(APIView):
+    def get_employer_profile(self,request):
+
+        token = request.COOKIES.get('jwt')
+        if not token:
+            raise AuthenticationFailed('Unauthenticated')
+
+        try:
+            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthorized')
+        
+        employer = Employer.objects.filter(user_id=payload['id']).first()
+        serializer = EmployerProfileSerializer(employer)
+        
+        return Response(serializer.data)   
 
 
 class LoginView(APIView):
@@ -137,6 +149,12 @@ class LogoutView(APIView):
 class MpesaPaymentViewSet(viewsets.ModelViewSet):  
       serializer_class = MpesaPaymentSerializer
       queryset = MpesaPayment.objects.all()
+
+class ApplicantsViewSet(viewsets.ModelViewSet):  
+      serializer_class = ApplicantsSerializer
+      queryset = Applicants.objects.all()
+    
+
 
 class JobViewSet(viewsets.ModelViewSet):  
       serializer_class = JobSerializer

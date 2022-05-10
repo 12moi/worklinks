@@ -3,7 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 from rest_framework.routers import DefaultRouter
-from .views import    SignUpViewSet, UpdateUserProfileViewSet
+from .views import    EmployerProfileView, SignUpViewSet, UpdateUserProfileViewSet
 from rest_framework import routers
 from .views import LogoutView, RegisterView, LoginView, UserView
 # from rest_framework_swagger.views import get_swagger_view
@@ -35,6 +35,7 @@ router.register('User', views.SignUpViewSet)
 # router.register('Jobseeker', views.JobseekerViewSet)
 router.register('UpdateUserProfile', views.UpdateUserProfileViewSet)
 router.register('EmployerProfile', views.EmployerProfileViewSet)
+router.register('Applicants', views.ApplicantsViewSet)
 
 
 urlpatterns = [
@@ -42,6 +43,7 @@ urlpatterns = [
     path('login', LoginView.as_view()),
     path('user', UserView.as_view()),
     path('logout', LogoutView.as_view()),
+    path('employer/profile/', EmployerProfileView.as_view()),
     path('', include(router.urls)),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
@@ -51,6 +53,7 @@ urlpatterns = [
     path('EmployerProfile/', views.EmployerProfile, name='EmployerProfile'),
     path('user/', views.User, name='User'),
     path('profile/', views.UserProfile, name='UpdateUserProfile'),
+    path('Applicants/', views.Applicants, name='Applicants'),
     
    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

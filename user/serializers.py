@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import EmployerProfile, MpesaPayment,Job,UserProfile
+from .models import  Applicants, Employer, EmployerProfile, MpesaPayment,Job,UserProfile
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 
@@ -22,6 +22,16 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+class EmployerProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employer
+        fields = ['user', 'website','company_bio','company_name', 'company_pic', 'address','email', 'contact', 'location', ]
+
+class ApplicantsSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Applicants
+        fields = ['Full_Name', 'Email', 'Contact', 'Salary_Expectations']
 
 class MpesaPaymentSerializer(serializers.ModelSerializer):
     class Meta:

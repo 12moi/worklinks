@@ -107,7 +107,33 @@ class Jobseeker(models.Model):
         return jobseekers
 
 
+class Employer(models.Model):
+    user = models.OneToOneField(
+        User, related_name='employers', on_delete=models.CASCADE)
+    company_name = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    contact = models.CharField(max_length=15)
+    location = models.CharField(max_length=120, blank=True)
+    address = models.CharField(max_length=255)
+    company_bio = models.CharField(max_length=255)
+    company_pic =models.FileField('image')
+    website = models.URLField(blank=True)
 
+class Applicants(models.Model):
+    Applicant_id = models.AutoField(primary_key=True)
+    Full_Name = models.CharField(max_length=255)
+    Email = models.CharField(max_length=255)
+    Contact = models.IntegerField()
+    Availability= models.CharField(max_length=255)
+    Salary_Expectations = models.CharField(max_length=255)
+
+
+
+    def save_Applicants(self):
+        self.save()
+
+    def delete_Applicants(self):
+        self.delete()
 
 class EmployerProfile(models.Model):
     user = models.OneToOneField(

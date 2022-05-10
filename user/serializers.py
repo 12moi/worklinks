@@ -27,11 +27,11 @@ class EmployerProfileSerializer(serializers.ModelSerializer):
         model = Employer
         fields = ['user', 'website','company_bio','company_name', 'company_pic', 'address','email', 'contact', 'location', ]
 
-class ApplicantsSerializer(serializers.ModelSerializer):
+# class ApplicantsSerializer(serializers.ModelSerializer):
     
-    class Meta:
-        model = Applicants
-        fields = ['Full_Name', 'Email', 'Contact', 'Salary_Expectations']
+#     class Meta:
+#         model = Applicants
+#         fields = ['Full_Name', 'Email', 'Contact', 'Salary_Expectations']
 
 class ApplySerializer(serializers.ModelSerializer):
     class Meta:

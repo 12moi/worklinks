@@ -35,7 +35,7 @@ router.register('User', views.SignUpViewSet)
 # router.register('Jobseeker', views.JobseekerViewSet)
 router.register('UpdateUserProfile', views.UpdateUserProfileViewSet)
 router.register('EmployerProfile', views.EmployerProfileViewSet)
-router.register('Applicants', views.ApplicantsViewSet)
+# router.register('Applicants', views.ApplicantsViewSet)
 router.register('Apply', views.ApplyViewSet)
 
 
@@ -54,7 +54,7 @@ urlpatterns = [
     path('EmployerProfile/', views.EmployerProfile, name='EmployerProfile'),
     path('user/', views.User, name='User'),
     path('profile/', views.UserProfile, name='UpdateUserProfile'),
-    path('Applicants/', views.Applicants, name='Applicants'),
+    # path('Applicants/', views.Applicants, name='Applicants'),
     path('Apply/', views.Applicants, name='Apply'),
     
    

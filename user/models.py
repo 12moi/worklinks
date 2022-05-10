@@ -119,22 +119,22 @@ class Employer(models.Model):
     company_pic =models.FileField('image')
     website = models.URLField(blank=True)
 
-# class Applicants(models.Model):
-#     id = models.BigAutoField(primary_key=True)
-#     Full_Name = models.CharField(max_length=255)
-#     Email = models.CharField(max_length=255)
-#     Contact = models.IntegerField()
-#     Availability= models.CharField(max_length=255)
-#     Salary_Expectations = models.CharField(max_length=255)
-#     Relation= models.ForeignKey(UserProfile,  on_delete=models.CASCADE,)
+class Applicants(models.Model):
+    Relate= models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE, related_name='relation')
+    Full_Name = models.CharField(max_length=255)
+    Email = models.CharField(max_length=255)
+    Contact = models.IntegerField()
+    Availability= models.CharField(max_length=255)
+    Salary_Expectations = models.CharField(max_length=255)
+    
 
 
-#     def save_Applicants(self):
-#         self.save()
+    def save_Applicants(self):
+        self.save()
 
 
-#     def delete_Applicants(self):
-#         self.delete()
+    def delete_Applicants(self):
+        self.delete()
 
 class EmployerProfile(models.Model):
     user = models.OneToOneField(

@@ -51,7 +51,7 @@ class JobSerializer(serializers.ModelSerializer):
 class EmployerProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmployerProfile
-        fields = ['user', 'name','contact', 'email','location','address', 'company_bio', 'company_pic']
+        fields = ['name','contact', 'email','location','address', 'company_bio', 'company_pic']
 
 class UpdateUserProfileSerializer(serializers.ModelSerializer):
     class Meta:

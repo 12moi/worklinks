@@ -119,7 +119,6 @@ INSTALLED_APPS = [
     # 'rest_framework_swagger',
     'phonenumbers',
     'rest_framework',
-    # 'USERS',
     'bootstrap4',
     'cloudinary',
     'drf_yasg',

@@ -154,7 +154,7 @@ class EmployerProfile(models.Model):
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     contact = models.IntegerField()
-    location = models.IntegerField(blank=True)
+    location = models.CharField(blank=True)
     address = models.CharField(max_length=255)
     company_bio = models.CharField(max_length=255)
     company_pic = models.FileField(blank=True)

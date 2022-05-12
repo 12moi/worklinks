@@ -122,6 +122,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'cloudinary',
     'drf_yasg',
+    'admin_interface',
+    'colorifield',
     "corsheaders",
     'rest_framework.authtoken',
 ]
@@ -230,7 +232,7 @@ SESSION_COOKIE_SAMESITE = 'None'
 CORS_ALLOWED_ORIGINS = [
     # "https://moiwork.herokuapp.com/",
     "http://localhost:4200",
-    
+     "https://sharonkorir.github.io/worklinks-frontend/"
 ]
 
 CORS_ALLOW_METHODS = [

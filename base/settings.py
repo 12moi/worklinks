@@ -230,7 +230,7 @@ CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
 
 CORS_ALLOWED_ORIGINS = [
-    # "http://localhost:4200",
+     "http://localhost:4200",
      "https://sharonkorir.github.io"
 ]
 

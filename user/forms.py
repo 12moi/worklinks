@@ -24,8 +24,8 @@ class PaymentForm(forms.ModelForm):
 class EmployerProfileForm(forms.ModelForm):
     class Meta:
         model = EmployerProfile
-        # fields = '__all__'
-        exclude = ['user']
+        fields = '__all__'
+        # exclude = ['user']
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField()

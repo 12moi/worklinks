@@ -121,7 +121,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'bootstrap4',
     'cloudinary',
-    # 'drf_yasg',
+    'drf_yasg',
     "corsheaders",
     'rest_framework.authtoken',
 ]

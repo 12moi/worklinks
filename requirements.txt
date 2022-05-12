@@ -56,3 +56,4 @@ sqlparse==0.4.2
 urllib3==1.26.9
 whitenoise==6.0.0
 zipp==3.8.0
+drf-yasg==1.20.0

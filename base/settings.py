@@ -122,8 +122,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'cloudinary',
     'drf_yasg',
-    'admin_interface',
-    'colorifield',
+    # 'admin_interface',
+    # 'colorifield',
     "corsheaders",
     'rest_framework.authtoken',
 ]

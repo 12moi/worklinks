@@ -231,7 +231,7 @@ SESSION_COOKIE_SAMESITE = 'None'
 
 CORS_ALLOWED_ORIGINS = [
     # "http://localhost:4200",
-     "https://sharonkorir.github.io/worklinks-frontend"
+     "https://sharonkorir.github.io"
 ]
 
 CORS_ALLOW_METHODS = [

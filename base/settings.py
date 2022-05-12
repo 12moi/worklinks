@@ -230,9 +230,8 @@ CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
 
 CORS_ALLOWED_ORIGINS = [
-    # "https://moiwork.herokuapp.com/",
-    "http://localhost:4200",
-     "https://sharonkorir.github.io/worklinks-frontend/"
+    # "http://localhost:4200",
+     "https://sharonkorir.github.io/worklinks-frontend"
 ]
 
 CORS_ALLOW_METHODS = [

@@ -150,7 +150,7 @@ class Apply(models.Model):
 
 class EmployerProfile(models.Model):
     user = models.OneToOneField(
-        User, related_name='employer', on_delete=models.CASCADE)
+        User,  null=True, blank=True, on_delete=models.CASCADE, related_name='employer')
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     contact = models.IntegerField()
